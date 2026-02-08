@@ -1,34 +1,34 @@
 # 🛒 Online Shop API
 
-REST API для онлайн-магазина, разработанный на **Django Rest Framework**  
-с поддержкой аутентификации, комментариев, заказов и Swagger-документации.
+**Django Rest Framework** asosida yaratilgan onlayn do‘kon uchun REST API.  
+Loyiha autentifikatsiya, izohlar (kommentariyalar), buyurtmalar va Swagger hujjatlarini qo‘llab-quvvatlaydi.
 
 ---
 
-## 🚀 Возможности
-- CRUD для товаров (Products)
-- Категории товаров
-- Комментарии к товарам
-- Только автор может редактировать/удалять свой комментарий
-- Аутентификация пользователей
-- Swagger (API документация)
-- Админ-панель Django
+## 🚀 Imkoniyatlar
+- Mahsulotlar uchun CRUD amallari
+- Mahsulot kategoriyalari
+- Mahsulotlarga izohlar (kommentariyalar)
+- Izohni faqat muallifi tahrirlashi yoki o‘chirishi mumkin
+- Foydalanuvchilar autentifikatsiyasi
+- Swagger (API hujjatlari)
+- Django admin paneli
 
 ---
 
-## 🛠️ Стек технологий
+## 🛠️ Texnologiyalar steki
 - Python 3.x
 - Django
 - Django Rest Framework (DRF)
 - SQLite
 - drf-spectacular (Swagger)
-- JWT (если используется)
+- JWT (agar ishlatilgan bo‘lsa)
 
 ---
 
-## 📦 Установка и запуск
+## 📦 O‘rnatish va ishga tushirish
 
-### 1️⃣ Клонировать проект
+### 1️⃣ Loyihani yuklab olish
 ```bash
 git clone <repository_url>
 cd project_name
