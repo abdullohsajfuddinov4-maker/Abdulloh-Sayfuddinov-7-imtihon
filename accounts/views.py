@@ -12,6 +12,7 @@ from .serializers import (
     ProfileSerializer,
     ProfileUpdateSerializer,
     RegisterVerifySerializer,
+    ResetPasswordSerializer,
 )
 
 

@@ -95,14 +95,10 @@ class ResetPasswordSerializer(serializers.Serializer):
         user = self.context["request"].user
 
         if new_password != confirm_password:
-            raise serializers.ValidationError({
-                "confirm_password": "Parollar mos emas"
-            })
+            raise serializers.ValidationError({"confirm_password": "Parollar mos emas"})
 
         if user.check_password(new_password):
-            raise serializers.ValidationError({
-                "new_password": "Yangi parol eski parol bilan bir xil bo‘lishi mumkin emas"
-            })
+            raise serializers.ValidationError({"new_password": "Yangi parol eski parol bilan bir xil bo‘lishi mumkin emas"})
 
         validate_password(new_password, user)
 
