@@ -9,6 +9,7 @@ import random
 class CustomUser(AbstractUser):
     phone_number = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='users',default='users/default.jpg', blank=True, null=True)
 
 
     def __str__(self):
