@@ -15,13 +15,13 @@ class RegisterRequestSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         if attrs["password"] != attrs["password2"]:
-            raise serializers.ValidationError({"password": "Пароли не совпадают"})
+            raise serializers.ValidationError({"password": "paroll mos emas"})
 
-        if User.objects.filter(email=attrs["email"]).exists():
-            raise serializers.ValidationError({"email": "Email уже занят"})
+        # if User.objects.filter(email=attrs["email"]).exists():
+        #     raise serializers.ValidationError({"email": "email bant"}) vaqtincha imtihon uchun ochirild :)
 
         if User.objects.filter(username=attrs["username"]).exists():
-            raise serializers.ValidationError({"username": "Username уже занят"})
+            raise serializers.ValidationError({"username": "Username  bant"})
 
         validate_password(attrs["password"])
         return attrs
@@ -47,7 +47,7 @@ class RegisterVerifySerializer(serializers.Serializer):
 
         user = User.objects.filter(email=email).first()
         if not user:
-            raise serializers.ValidationError({"email": "Пользователь не найден"})
+            raise serializers.ValidationError({"email": "user yoq"})
 
         code_obj = (EmailVerifyCode.objects
                     .filter(user=user, is_used=False)
@@ -55,11 +55,11 @@ class RegisterVerifySerializer(serializers.Serializer):
                     .first())
 
         if not code_obj:
-            raise serializers.ValidationError({"code": "Код не найден"})
+            raise serializers.ValidationError({"code": "kod yoq"})
         if code_obj.is_expired():
-            raise serializers.ValidationError({"code": "Срок кода истёк"})
+            raise serializers.ValidationError({"code": "kodni vaqti tugadi"})
         if code_obj.code != code:
-            raise serializers.ValidationError({"code": "Неверный код"})
+            raise serializers.ValidationError({"code": "kod notogri"})
 
         attrs["user"] = user
         attrs["code_obj"] = code_obj
@@ -78,12 +78,6 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
         fields = ("email", "phone_number", "address")
 
 
-class ResetPasswordSerializer(serializers.Serializer):
-    old_password = serializers.CharField(write_only=True)
-    new_password = serializers.CharField(write_only=True, min_length=8)
 
-    def validate_new_password(self, value):
-        validate_password(value)
-        return value
 
 

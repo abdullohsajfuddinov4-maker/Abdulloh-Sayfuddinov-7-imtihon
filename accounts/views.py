@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
-from .serializers import ResetPasswordSerializer
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -12,7 +11,6 @@ from .serializers import (
     EmailVerifyCode,
     ProfileSerializer,
     ProfileUpdateSerializer,
-    ResetPasswordSerializer,
     RegisterVerifySerializer
 )
 
@@ -34,7 +32,7 @@ class RegisterRequestView(APIView):
         send_register_code(user.email, code_obj.code)
 
         return Response(
-            {"detail": "Код отправлен на почту. Подтвердите регистрацию.", "email": user.email},
+            {"detail": "kod yuborildi", "email": user.email},
             status=status.HTTP_201_CREATED
         )
 
@@ -55,7 +53,7 @@ class RegisterVerifyView(APIView):
         code_obj.is_used = True
         code_obj.save(update_fields=["is_used"])
 
-        return Response({"detail": "Регистрация подтверждена. Теперь можно войти."}, status=status.HTTP_200_OK)
+        return Response({"detail": "royhattan otdingiz "}, status=status.HTTP_200_OK)
 
 class ProfileView(APIView):
     permission_classes = [IsAuthenticated]
