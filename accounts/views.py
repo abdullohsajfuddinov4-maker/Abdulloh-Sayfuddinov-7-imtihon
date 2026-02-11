@@ -11,7 +11,7 @@ from .serializers import (
     EmailVerifyCode,
     ProfileSerializer,
     ProfileUpdateSerializer,
-    RegisterVerifySerializer
+    RegisterVerifySerializer,
 )
 
 

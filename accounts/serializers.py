@@ -78,6 +78,35 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
         fields = ("email", "phone_number", "address")
 
 
+class ResetPasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(write_only=True)
+    new_password = serializers.CharField(write_only=True)
+    confirm_password = serializers.CharField(write_only=True)
+
+    def validate_old_password(self, value):
+        user = self.context["request"].user
+        if not user.check_password(value):
+            raise serializers.ValidationError("Eski parol noto‘g‘ri")
+        return value
+
+    def validate(self, attrs):
+        new_password = attrs.get("new_password")
+        confirm_password = attrs.get("confirm_password")
+        user = self.context["request"].user
+
+        if new_password != confirm_password:
+            raise serializers.ValidationError({
+                "confirm_password": "Parollar mos emas"
+            })
+
+        if user.check_password(new_password):
+            raise serializers.ValidationError({
+                "new_password": "Yangi parol eski parol bilan bir xil bo‘lishi mumkin emas"
+            })
+
+        validate_password(new_password, user)
+
+        return attrs
 
 
 
